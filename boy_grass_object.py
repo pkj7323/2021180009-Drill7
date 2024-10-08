@@ -94,7 +94,7 @@ while running:
     handle_events()
     update_world() # 상호작용을 시뮬레이션
     render_world() # 그결과를 보여줌
-
+    delay(0.03)
 
 
 # finalization code
