@@ -26,6 +26,25 @@ class Boy:
         self.image.clip_draw(self.frame * 100, 0 , 100, 100, self.x, self.y)
 
 
+class Ball:
+    def __init__(self):
+        self.x = random.randint(0,800)
+        self.y = 599
+        self.type = random.randint(0,1)
+        if self.type == 0:
+            self.image = load_image("ball21x21.png")
+        else:
+            self.image = load_image("ball41x41.png")
+    def update(self):
+        if self.type == 0:
+            if (self.y - 30) >= 30:
+                self.y -= 2
+        elif self.type == 1:
+            if (self.y - 41) >= 30:
+                self.y -= 2
+    def draw(self):
+        self.image.draw(self.x,self.y)
+
 def handle_events():
     global running
     events = get_events()
@@ -40,11 +59,12 @@ def reset_world():
     global running
     global world
     world = []
+    world.append(Boy())
+    world.append(Grass())
+    balls = [Ball() for i in range(20)]
+    world += balls
     running = True
-    grass = Grass()
-    world.append(grass)
-    team = [Boy() for i in range(11)]
-    world += team
+
 
 
 def update_world():
@@ -73,7 +93,7 @@ while running:
     handle_events()
     update_world() # 상호작용을 시뮬레이션
     render_world() # 그결과를 보여줌
-    delay(0.05)
+
 
 
 # finalization code
