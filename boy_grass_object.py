@@ -31,6 +31,7 @@ class Ball:
         self.x = random.randint(0,800)
         self.y = 599
         self.type = random.randint(0,1)
+        self.speed = random.randint(1,5)
         if self.type == 0:
             self.image = load_image("ball21x21.png")
         else:
@@ -38,10 +39,10 @@ class Ball:
     def update(self):
         if self.type == 0:
             if (self.y - 30) >= 30:
-                self.y -= 2
+                self.y -= self.speed
         elif self.type == 1:
             if (self.y - 41) >= 30:
-                self.y -= 2
+                self.y -= self.speed
     def draw(self):
         self.image.draw(self.x,self.y)
 
